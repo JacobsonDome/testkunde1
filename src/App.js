@@ -1,7 +1,7 @@
 function App() {
   return (
     <div className="App">
-      erst mal wieder lernen!!
+      nochmal wieder holen
     </div>
   );
 }
