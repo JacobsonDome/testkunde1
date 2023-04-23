@@ -6,8 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: my-step1
-        run: echo test
-#          echo "${{ secrets.DOCKERHUB }}" | docker login -u "santosch" --password-stdin
+        run: |
+          echo "${{ secrets.DOCKERHUB }}" | docker login -u "santosch" --password-stdin
 #          docker image build -t santosch/reponeu:v${{ github.run_number }} .
 #          docker push santosch/reponeu:v${{ github.run_number }}
 
