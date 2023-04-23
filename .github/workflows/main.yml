@@ -8,6 +8,6 @@ jobs:
       - name: my-step1
         run: |
           echo "${{ secrets.TESTKUNDE1 }}" | docker login -u "santosch" --password-stdin
-#          docker image build -t santosch/reponeu:v${{ github.run_number }} .
-#          docker push santosch/reponeu:v${{ github.run_number }}
+          docker image build -t santosch/reponeu:v${{ github.run_number }} .
+          docker push santosch/reponeu:v${{ github.run_number }}
 
