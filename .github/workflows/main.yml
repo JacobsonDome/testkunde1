@@ -1,13 +1,29 @@
-name: hello-world1
-on: push
+name: testkunde1
+on:
+  push:
+    branches:
+      - main
+      - feature-branch
 jobs:
-  my-job:
+  my-jobs:
+    if: github.ref == 'refs/heads/feature-branch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: my-step1
+#        run: echo ${{github.ref}}
         run: |
-          echo "${{ secrets.TESTKUNDE1 }}" | docker login -u "santosch" --password-stdin
-          docker image build -t santosch/reponeu:v${{ github.run_number }} .
-          docker push santosch/reponeu:v${{ github.run_number }}
-
+          echo "${{secrets.TESTKUNDE1DEV }}" | docker login -u "santosch" --password-stdin
+          docker image build -t santosch/testkunde1dev:v${{ github.run_number }} .
+          docker push santosch/testkunde1dev:v${{ github.run_number }}
+          
+  prod:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: my-step2
+        run: |
+         echo "${{secrets.TESTKUNDE1 }}" | docker login -u "santosch" --password-stdin
+         docker image build -t santosch/testkunde1:v${{ github.run_number }} .
+         docker push santosch/testkunde1:v${{ github.run_number }}
